@@ -1,28 +1,26 @@
-import java.util.*;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String s1 = scanner.next();
+        String s1 = scanner.next(); 
         String s2 = scanner.next();
-        hasCommonChar(s1, s2);
+        if (hasAnyCommonChar(s1, s2)) {
+            System.out.println("yes");
+        } else {
+            System.out.println("no");
+        }
     }
-    public static void hasCommonChar(String s1, String s2) {
-        boolean[] charPresent = new boolean[256];
+    public static boolean hasAnyCommonChar(String s1, String s2) {
+        boolean[] charPresent = new boolean[256]; 
         for (char c : s1.toCharArray()) {
-            try {
-                charPresent[c] = true;
-            } catch (ArrayIndexOutOfBoundsException e) {
-            }
+            charPresent[c] = true;
         }
+
         for (char c : s2.toCharArray()) {
-            try {
-                if (charPresent[c]) {
-                    System.out.println("yes");
-                    return; 
-                }
-            } catch (ArrayIndexOutOfBoundsException e) {
+            if (charPresent[c]) {
+                return true; 
             }
         }
-        System.out.println("no");
+        return false;
     }
 }
